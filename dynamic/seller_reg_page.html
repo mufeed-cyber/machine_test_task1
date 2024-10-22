@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple login Form</title>
+    <link rel="stylesheet" href=" {% static 'css/registration.css' %} ">
+</head>
+
+<body>
+    <form method="post" action="">
+        {% csrf_token %} 
+        <div class="container">
+            <h1>Seller registration Page</h1>
+
+            <label for="name"><b>Name</b></label>
+            <input type="text" name="nm" placeholder="Enter name" required>
+
+            <label for="number"><b>Age</b></label>
+            <br>
+            <input type="phone" name="age" placeholder="Age" required><br>
+
+            <label for="number"><b>Phone No. </b></label>
+            <br>
+            <input type="phone" name="ph" placeholder="Your Phone Number" required><br>
+
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="em" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <p>Already registered? <a href="/login" style="color:dodgerblue">Login here</a>.</p>
+
+            <div class="clearfix">      
+                <button type="submit" class="btn">Register</button>
+            </div>
+                
+        </div>
+    </form>
+
+    <div class="youtubeBtn">
+        <a target="_blank" href="https://www.youtube.com/watch?v=7k8kKRQa9jY">
+            <span>Watch on YouTube</span>
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+</body>
+
+</html>

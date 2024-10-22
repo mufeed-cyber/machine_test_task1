@@ -1,0 +1,27 @@
+{% extends 'base_seller.html' %}
+{% load static %}
+
+{% block title %} New Product {% endblock %}
+
+{% block content %}
+    <br>
+    <form action="/sellerapp/upload" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        Cake Name <input type="text" name="cn"> <br><br>
+        Cake Price <input type="number" name="cp"> <br><br>
+        Category <select name="category" id="">
+            <option value="wedding">Wedding Cake</option>
+            <option value="anniversary">Anniversary Cake</option>
+            <option value="birthday">Birthday cake</option>
+            <option value="others">Others</option>
+        </select> <br><br>
+        Cake Image <input type="file" name="ci" id=""><br><br>
+        Cake Quantity <input type="number" name="cqty"> <br><br>
+
+        
+        <input type="submit" value="Upload">
+        <i>{{upload_msg}}</i>
+        
+    </form>
+{% endblock %}

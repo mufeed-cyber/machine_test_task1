@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block title %} Cart {% endblock %}
+
+{% block link %} <link rel="stylesheet" href=" {% static 'css/cart.css' %} ">{% endblock %}
+
+
+{% block content %}
+<h2>{{username}}'s Wishlist</h2>
+    {% if wishlistobj %}
+    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Images</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Price</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in wishlistobj %}
+          <tr>
+            <td><img src="{{i.product.cakeimage.url}}" alt="product img error"></td>
+            <td>{{i.product.cakename}}</td>
+            <td>{{i.product.cakeprice}}</td>
+            
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+    <h5 style="color: red;">Wishlist empty</h5>  
+    {% endif %}  
+
+{% endblock %}

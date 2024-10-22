@@ -1,0 +1,40 @@
+{% extends 'base_seller.html' %}
+{% load static %}
+
+{% block title %} My Products {% endblock %}
+
+{% block content %}
+{% if proobjs %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Images</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Available Quantity</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in proobjs %}
+        <tr>
+            <td><img src="{{i.cakeimage.url}}" alt="product img error" style="height: 50px; width: 50px;"></td>
+            <td>{{i.cakename}}</td>
+            <td>{{i.category}}</td>
+            <td>{{i.cakeprice}}</td>
+            <td>{{i.quantity}}</td>
+            <td colspan="2">
+                <a href="/sellerapp/editmyproducts?proid={{i.id}}"><img src=" {% static 'images/pen.svg' %} " style="height: 20px; width: 20px;" alt="edit"></a>
+                &ensp;
+                <a href="/sellerapp/deletemyproducts?proid={{i.id}}"><img src=" {% static 'images/trash.svg' %} " style="height: 20px; width: 20px;" alt="delete"></a>
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<h5>Products not added yet</h5>
+{% endif %}
+{% endblock %}

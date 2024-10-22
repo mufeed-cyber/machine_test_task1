@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block title %} All items {% endblock %}
+{% block link %}
+<link rel="stylesheet" href=" {% static 'css/viewall.css' %} ">{% endblock %}
+
+
+{% block content %}
+{% if data %}
+{% if messages %}
+    {% for i in messages %}
+    <h4 style="color: green;">{{i}}</h4>
+    {% endfor %}
+{% endif %}
+<div class="container" style="display: flex; gap: 25px; margin-top: 2%;">
+
+    {% for i in data %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{i.cakeimage.url}}" class="card-img-top" alt="cake images">
+        <div class="card-body">
+            <h5 class="card-title">{{i.cakename}}</h5>
+            <p class="card-text">Cake price : {{i.cakeprice}}</p>
+            <p class="card-text">Cake category : {{i.category}}</p>
+            <a href="/addtocart?idn={{i.id}}" class="btn btn-success">Add to cart</a>
+            <a href="/addtowishlist?idn={{i.id}}" class="btn btn-warning">Add to Wishlist</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<h5>Products not available</h5>
+{% endif %}
+{% endblock %}

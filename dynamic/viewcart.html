@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block title %} Cart {% endblock %}
+
+{% block link %} <link rel="stylesheet" href=" {% static 'css/cart.css' %} ">{% endblock %}
+
+
+{% block content %}
+    {% if cartobj %}
+    <h2>Hi {{username}}</h2>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Images</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Action</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in cartobj %}
+          <tr>
+            <td><img src="{{i.product.cakeimage.url}}" alt="product img error"></td>
+            <td>{{i.product.cakename}}</td>
+            <td>{{i.product.cakeprice}}</td>
+            <td>{{i.quantity}}</td>
+            <td>
+              <!-- <a href="/buyone?cid={{i.id}}" class="btn btn-primary">Buy Now</a> -->
+              <a href="/deleteone?cid={{i.id}}" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <h3>Total Price : RS {{total}}/-</h3>
+      <h3>Total Quantity : {{quantity}}</h3>
+      
+
+      {% else %}
+      <h4>Your Cart is empty</h4>
+      {% endif %}
+
+{% endblock %}

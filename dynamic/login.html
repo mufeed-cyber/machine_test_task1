@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple login Form</title>
+    <link rel="stylesheet" href=" {% static 'css/registration.css' %} ">
+</head>
+
+<body>
+    <form method="post" action=" {% url 'login_link' %} ">
+        {% csrf_token %} <!--for authentication-->
+        <div class="container">
+            <h1>Login</h1>
+
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="em" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <p>Not registered?
+                <a href=" {% url 'regName_for_link' %} " style="color:dodgerblue">Register as user</a> , or
+                <a href="/sellerapp/registration" style="color:dodgerblue">Register as seller</a>.
+
+            </p>
+
+            <div class="clearfix">      
+                <button type="submit" class="btn">Login</button>
+            </div>
+        
+            <h2 style="color: red;">{{error_msg}}</h2>    <!--  dict is used to dispay the error msg ie in python code and defined in function   -->
+        
+        </div>
+    </form>
+
+    <div class="youtubeBtn">
+        <a target="_blank" href="https://www.youtube.com/watch?v=7k8kKRQa9jY">
+            <span>Watch on YouTube</span>
+            <i class="fab fa-youtube"></i>
+        </a>
+    </div>
+</body>
+
+</html>

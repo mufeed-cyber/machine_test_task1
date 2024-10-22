@@ -1,0 +1,38 @@
+{% extends 'base_seller.html' %}
+{% load static %}
+
+{% block title %} New Product {% endblock %}
+
+{% block content %}
+    <br>
+    <h3>Edit the Product</h3>
+    {% for proobj in proobjs %}
+    <form action="" method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        Cake Name <input type="text" name="cn" value="{{proobj.cakename}}"> <br><br>
+        Cake Price <input type="number" name="cp" value="{{proobj.cakeprice}}"> <br><br>
+        Cake Available Quantity <input type="number" name="cqty" value="{{proobj.quantity}}"> <br><br>
+        Category <select name="category" id="">
+            
+            <option value="wedding" {% if proobj.category == 'wedding' %} selected {% endif %}>  Wedding Cake</option>
+           
+            <option value="anniversary" {% if proobj.category == 'anniversary' %} selected {% endif %}>Anniversary Cake</option>
+            
+            <option value="birthday" {% if proobj.category == 'birthday' %} selected {% endif %}>Birthday cake</option>
+
+            
+            <option value="others" {% if proobj.category == 'others' %} selected {% endif %} >Others</option>
+        
+        </select> <br><br>
+        Cake Image  <img src="{{proobj.cakeimage.url}}" style="height: 75px; width: 75px;" alt="img error">
+        <input type="file" name="ci">
+        <br><br>
+
+        
+        <input type="submit" value="Update">
+        <i>{{upload_msg}}</i>
+        
+    </form>
+    {% endfor %}
+{% endblock %}

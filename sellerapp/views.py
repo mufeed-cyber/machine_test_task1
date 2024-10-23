@@ -38,16 +38,14 @@ def sellerRegPage(request):
         return render(request,'seller_reg_page.html')
 
 def uploadPage(request):
+    sellerid=request.session['seller_id']
+    sellerobj=sellertbl.objects.get(id=sellerid)
     if request.method=='POST':
         cname=request.POST.get('cn')
         cprice=request.POST.get('cp')
         ccatgory=request.POST.get('category')
         cimg=request.FILES.get('ci')
         cqty=request.POST.get('cqty')
-
-        sellerid=request.session['seller_id']
-        sellerobj=sellertbl.objects.get(id=sellerid)
-
         obj=producttbl.objects.create(
             cakename=cname,
             cakeprice=cprice,
@@ -59,20 +57,23 @@ def uploadPage(request):
         print('cakeprice',cprice,type(cprice)),
         obj.save()
         if obj:
-            return render(request,'upload.html',{'upload_msg':'Product uploaded successfully '})
+            return render(request,'upload.html',{'approvalstatus':sellerobj.approval,'upload_msg':'Product uploaded successfully '})
         else:
-            return render(request,'upload.html',{'upload_msg':'Product failed to upload'})
-    return render(request,'upload.html')
+            return render(request,'upload.html',{'approvalstatus':sellerobj.approval,'upload_msg':'Product failed to upload'})
+    return render(request,'upload.html',{'approvalstatus':sellerobj.approval})
+    
 
 def myproducts(request):
     sellerid=request.session['seller_id']
     sellerobjs=sellertbl.objects.get(id=sellerid)
     proobjs=producttbl.objects.filter(selleridFK=sellerobjs)
-    return render(request,'myproducts.html',{'proobjs':proobjs})
-
+    return render(request,'myproducts.html',{'proobjs':proobjs,'approvalstatus':sellerobjs.approval})
+    
 def editmyproducts(request):
     proid=request.GET.get('proid')
     proobjs=producttbl.objects.filter(id=proid)
+    sellerid=request.session['seller_id']
+    sellerobjs=sellertbl.objects.get(id=sellerid)
     if request.method=='POST':
         cname=request.POST.get('cn')
         cprice=request.POST.get('cp')
@@ -87,10 +88,11 @@ def editmyproducts(request):
             if cimg:
                 i.cakeimage=cimg
             i.save()
-        return render(request,'editmyproducts.html',{'proobjs':proobjs,'upload_msg': 'Product updated successfully'})
+        return render(request,'editmyproducts.html',{'proobjs':proobjs,'approvalstatus':sellerobjs.approval,'upload_msg': 'Product updated successfully'})
 
     else:   
-        return render(request,'editmyproducts.html',{'proobjs':proobjs})
+        return render(request,'editmyproducts.html',{'proobjs':proobjs,'approvalstatus':sellerobjs.approval})
+   
 
 def deletemyproducts(request):
     proid=request.GET.get('proid')

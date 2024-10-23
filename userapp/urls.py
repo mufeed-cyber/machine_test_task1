@@ -8,7 +8,6 @@ urlpatterns=[
     path('login',views.loginPage,name='login_link'),
     path('logout',views.logoutPage,name='logout_link'),
     path('profile',views.profilePage,name='userprofile_link'),
-    path('email',views.email,name='email'),
     path('viewall',views.viewallPage,name='viewall'),
     path('addtocart',views.addtocart,name='addtocart'),
     path('viewcart',views.viewcart,name='viewcart'),

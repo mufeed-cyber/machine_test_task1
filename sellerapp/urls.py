@@ -13,5 +13,4 @@ urlpatterns=[
     path('myproducts',views.myproducts,name='myproducts'),
     path('editmyproducts',views.editmyproducts,name='editmyproducts'),
     path('deletemyproducts',views.deletemyproducts,name='deletemyproducts'),
-    path('approval',views.approval,name='approval'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

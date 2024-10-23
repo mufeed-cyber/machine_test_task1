@@ -3,7 +3,7 @@ from sellerapp.models import producttbl
 
 # Create your models here.
 
-class customertbl(models.Model):       #class objs will the rows of db table
+class customertbl(models.Model):       #class objs will be the rows of db table
     name=models.CharField(max_length=255)
     age=models.IntegerField()
     place=models.CharField(max_length=255)

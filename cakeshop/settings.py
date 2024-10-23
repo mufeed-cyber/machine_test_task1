@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'userapp',
-    'adminapp',
     'sellerapp',
 ]
 
@@ -130,12 +129,4 @@ STATIC_URL='static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 
 MEDIA_URL='media/'            
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')       #media folder path declared (user uplading files saving location)
-
-EMAIL_HOST='smtp.gmail.com'                     #For sending emails
-EMAIL_USE_TLS=True
-EMAIL_PORT=587
-EMAIL_HOST_USER='amalsanthosh527@gmail.com'     #sender mail id
-EMAIL_HOST_PASSWORD=' kkda mxqn xebx uair '
-
-
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')       

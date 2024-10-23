@@ -81,22 +81,6 @@ def profilePage(request):
     obj=customertbl.objects.get(id=request.session['user_id'])
     return render(request,'user_profile.html',{"userid":obj})
 
-
-def email(request):
-    if request.method=="POST":
-        nm=request.POST.get('nm')
-        em=request.POST.get('em')
-        msg=request.POST.get('msg')
-        sub='Hello '+nm
-        message='Thank you for your feedback'
-        send_mail(sub,message,settings.EMAIL_HOST_USER,[em],fail_silently=False)
-        messages.success(request,'Email sended successfully.')
-        return redirect('/email')     
-
-    else:
-        return render(request,'email.html')
-
-
 def viewallPage(request):
     objs=producttbl.objects.all
     return render(request,'viewall.html',{'data':objs})
@@ -148,26 +132,6 @@ def viewwishlist(request):
     wishlistobj=wishlistbl.objects.filter(customer=userobj)
     return render(request,'viewwishlist.html',{'wishlistobj':wishlistobj,'username':userobj.name})
 
-# def buyone(request):
-#     userid=request.session['user_id']
-#     userobj=customertbl.objects.get(id=userid)
-#     cartid=request.GET.get('cid')
-#     if cartid:
-#         cartobj=carttbl.objects.get(customer=userobj,id=cartid)
-       
-#     else:
-#         proid=proid=request.GET.get('idn')
-#         proobj=producttbl.objects.get(id=proid)
-#         cartobj=carttbl.objects.create(
-#             customer=userobj,
-#             product=proobj
-#         )
-#         cartobj.save()
-
-#     request.session['totalprice']=0
-#     # for i in cartobjs:
-#     request.session['totalprice']+=(cartobj.product.cakeprice*cartobj.quantity)
-#     return render(request,'checkout.html',{'cartobj':cartobj,'userobj':userobj,'totalprice':request.session['totalprice']})
     
 def deleteone(request):
     userid=request.session['user_id']
@@ -177,11 +141,3 @@ def deleteone(request):
     cartobj.delete()
     return redirect('/viewcart')
 
-# def placeorder(request):
-#     cartid=request.GET.get('cid')
-#     cartobj=carttbl.objects.get(id=cartid)
-#     proobj=cartobj.product
-#     proobj.quantity-=cartobj.quantity
-#     proobj.save()
-#     cartobj.delete()
-#     return redirect('/viewcart')

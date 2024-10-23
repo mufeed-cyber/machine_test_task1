@@ -98,7 +98,3 @@ def deletemyproducts(request):
     proobjs.delete()
     return redirect('/sellerapp/myproducts')
 
-def approval(request):
-    sellerid=request.session['seller_id']
-    sellerobj=sellertbl.objects.get(id=sellerid)
-    return render(request,'approval.html',{'sellerobj':sellerobj})

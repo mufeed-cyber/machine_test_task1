@@ -22,8 +22,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('userapp.urls')),   #empty single quates means, nothing to show in url 
-    path('adminapp/',include('adminapp.urls')),
+    path('',include('userapp.urls')),   
     path('sellerapp/',include('sellerapp.urls')), 
 ]
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

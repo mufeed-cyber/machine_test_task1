@@ -38,13 +38,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/sellerapp">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/sellerapp/approval">Admin approval</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/sellerapp/logout">Logout</a>
-                    </li>
+                  
 
                     {%  if approvalstatus == True %}
                     <li class="nav-item">
@@ -55,7 +49,9 @@
                         <a class="nav-link" href='/sellerapp/myproducts'>Veiw My products</a>
                     </li>
                     {% endif %}
-               
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sellerapp/logout">Logout</a>
+                    </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

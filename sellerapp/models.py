@@ -17,7 +17,6 @@ categories=[
     ('others','others')
 ]  
 
-
 class producttbl(models.Model):
     cakename=models.CharField(max_length=255)
     cakeprice=models.IntegerField()
